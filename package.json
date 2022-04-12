@@ -1,0 +1,34 @@
+{
+  "name": "cogreact",
+  "version": "0.0.1",
+  "description": "Use amazon aws cognito with React and Recoil",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ghostincjp/cogreact.git"
+  },
+  "keywords": [
+    "react",
+    "aws",
+    "cognito",
+    "recoil",
+    "hooks",
+    "auth"
+  ],
+  "author": "Ghost inc",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ghostincjp/cogreact/issues"
+  },
+  "homepage": "https://github.com/ghostincjp/cogreact#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.19.0",
+    "@typescript-eslint/parser": "^5.19.0",
+    "eslint": "^8.13.0",
+    "typescript": "^4.6.3",
+    "vitest": "^0.9.3"
+  }
+}
