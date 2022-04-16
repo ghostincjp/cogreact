@@ -1,10 +1,10 @@
 import { Amplify } from 'aws-amplify';
 import React, { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { authStateAtom, cogreactConfigAtom } from '../recoil/atoms';
+import { authStateAtom, cogreactOptionsAtom } from '../recoil/atoms';
 import { getInitialAuthStatus, getUserAttributes, getUserRoles } from '../utils/utils';
 
-type Props = {
+type CogreactConfig = {
   children: React.ReactNode;
   AuthConfig: {
     region: string;
@@ -16,9 +16,9 @@ type Props = {
     bucket: string;
     region: string;
   };
-} & Partial<CogreactConfig>;
+} & Partial<CogreactOptions>;
 
-export type CogreactConfig = {
+export type CogreactOptions = {
   loadingComponent: React.ReactElement<any, any> | null;
   loginPath: string;
   completeNewPasswordPath: string;
@@ -27,7 +27,7 @@ export type CogreactConfig = {
   defaultLoginSucceededPath: string;
 };
 
-export const Cogreact: React.FC<Props> = ({
+export const Cogreact: React.FC<CogreactConfig> = ({
   children,
   AuthConfig,
   S3Config,
@@ -39,7 +39,7 @@ export const Cogreact: React.FC<Props> = ({
   defaultLoginSucceededPath,
 }) => {
   const [authState, setAuthState] = useRecoilState(authStateAtom);
-  const [cogreactConfig, setCogreactConfig] = useRecoilState(cogreactConfigAtom);
+  const [cogreactConfig, setCogreactConfig] = useRecoilState(cogreactOptionsAtom);
   const didMount = useRef(false);
 
   useEffect(() => {

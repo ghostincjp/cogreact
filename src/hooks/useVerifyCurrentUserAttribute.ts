@@ -17,7 +17,7 @@ export const useVerifyCurrentUserAttributes = (args?: UseVerifyCurrentUserAttrib
       await Auth.verifyCurrentUserAttribute(verifyAttribute);
 
       args?.onCompleted && args?.onCompleted('success');
-    } catch (error) {
+    } catch (error: any) {
       switch (error.code) {
         case 'NotAuthorizedException':
           // ユーザーが無効化された場合に起こる。

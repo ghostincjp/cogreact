@@ -21,7 +21,7 @@ export const useVerifyCurrentUserAttributeSubmit = (args?: UseVerifyCurrentUserA
       setAuthState((state) => ({ ...state, authStatus: 'SIGNED_IN' }));
 
       args?.onCompleted && args?.onCompleted('success');
-    } catch (error) {
+    } catch (error: any) {
       switch (error.code) {
         case 'CodeMismatchException':
           // 無効なコードが入力された場合に起こる。

@@ -5,7 +5,7 @@ export const hasValidEmail = async () => {
   try {
     const userInfo = await Auth.currentUserInfo();
     return !!userInfo?.attributes?.email_verified;
-  } catch (error) {
+  } catch (error: any) {
     return false;
   }
 };
@@ -17,7 +17,7 @@ export const registeredEmail = async () => {
       return false;
     }
     return userInfo.attributes.email;
-  } catch (error) {
+  } catch (error: any) {
     return false;
   }
 };
@@ -26,7 +26,7 @@ export const getUserAttributes = async () => {
   try {
     const userInfo = await Auth.currentUserInfo();
     return userInfo?.attributes;
-  } catch (error) {
+  } catch (error: any) {
     return {};
   }
 };
@@ -35,7 +35,7 @@ export const getInitialAuthStatus = async () => {
   // sessionなし　＝　ログイン情報なし（SIGNED_OUT）
   try {
     await Auth.currentSession();
-  } catch (error) {
+  } catch (error: any) {
     return 'SIGNED_OUT';
   }
 

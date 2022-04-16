@@ -20,7 +20,7 @@ export const useConfirmSignUp = () => {
 
       setAuthState((state) => ({ ...state, authStatus: 'SIGNED_OUT' }));
       setError('');
-    } catch (error) {
+    } catch (error: any) {
       switch (error.code) {
         case 'CodeMismatchException':
           // 無効なコードが入力された場合に起こる。

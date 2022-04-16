@@ -19,7 +19,7 @@ export const useResendSignUp = () => {
 
       setAuthState((state) => ({ ...state, authStatus: 'REQUIRE_SIGN_UP_CONFIRMATION' }));
       setError('');
-    } catch (error) {
+    } catch (error: any) {
       switch (error.code) {
         case 'CodeDeliveryFailureException':
           // 認証コードの送信に失敗した場合に起こる。

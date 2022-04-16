@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil';
-import { cogreactConfigAtom } from '../recoil/atoms';
+import { cogreactOptionsAtom } from '../recoil/atoms';
 
 export const useCogreactConfig = () => {
-  const cogreactConfig = useRecoilValue(cogreactConfigAtom);
+  const cogreactConfig = useRecoilValue(cogreactOptionsAtom);
 
   return cogreactConfig;
 };

@@ -12,7 +12,7 @@ export const useSignOut = () => {
       setLoading(true);
       await Auth.signOut({ global });
       setAuthState((state) => ({ ...state, authStatus: 'SIGNED_OUT' }));
-    } catch (error) {
+    } catch (error: any) {
       setError('ログアウトに失敗しました');
     } finally {
       setLoading(false);

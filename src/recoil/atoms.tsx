@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { CogreactConfig } from '../components/Cogreact';
+import { CogreactOptions } from '../components/Cogreact';
 import { AuthState } from '../types';
 import { RecoilKey } from './keys';
 
@@ -11,7 +11,7 @@ export const authStateAtom = atom<AuthState>({
   },
 });
 
-export const cogreactConfigAtom = atom<CogreactConfig>({
+export const cogreactOptionsAtom = atom<CogreactOptions>({
   key: RecoilKey.COGREACT_CONFIG,
   default: {
     loadingComponent: <p>Loading...</p>,
