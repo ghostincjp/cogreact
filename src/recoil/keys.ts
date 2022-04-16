@@ -1,3 +1,4 @@
 export enum RecoilKey {
   AUTH_STATE = 'AUTH_STATE',
+  COGREACT_CONFIG = 'COGREACT_CONFIG',
 }

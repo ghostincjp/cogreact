@@ -28,7 +28,13 @@ const SignInForm = () => {
       <p>AuthStatus: {authState.authStatus}</p>
       {error && <p style={{ backgroundColor: '#fee2e2' }}>{error}</p>}
       <div>
-        <input type="text" placeholder="email" value={email} onChange={(e) => setEmail(e.currentTarget.value)} />
+        <input
+          type="text"
+          name="email"
+          placeholder="email"
+          value={email}
+          onChange={(e) => setEmail(e.currentTarget.value)}
+        />
         <input
           type="text"
           placeholder="password"

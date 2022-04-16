@@ -70,10 +70,73 @@ const YourComponent = () => {
 }
 ```
 
+### Use with utility routes
+
+```tsx
+import { PrivateRoute, LoginRoute, CompleteNewPasswordRoute } from 'cogreact';
+
+export function App() {
+  return (
+    <RecoilRoot>
+      <BrowserRouter>
+        <CogreactWrapper>
+          <Routes>
+            {/* Private routes is here. */}
+            <Route element={<PrivateRoute />}>
+              <Route path="/" element={<>Index</>} />
+              <Route path="private1" element={<>Private 1</>} />
+              <Route path="private2" element={<>Private 2</>} />
+            </Route>
+
+            {/* Sign in routes is here. */}
+            <Route element={<SignInRoute />}>
+              <Route path="login" element={<>Login</>} />
+            </Route>
+
+            {/* Complete new password routes is here. */}
+            <Route element={<CompleteNewPassword />}>
+              <Route path="complete-new-password" element={<>Complete New Password</>} />
+            </Route>
+          </Routes>
+        </CogreactWrapper>
+      </BrowserRouter>
+    </RecoilRoot>
+  );
+}
+
+```
+
 ## Try
 
 Try it out on storybook.
 
 ```bash
 npm run stroybook
+```
+
+## Cogreact Settings
+
+```ts
+type Props = {
+  children: React.ReactNode;
+  AuthConfig: {
+    region: string;
+    identityPoolId: string;
+    userPoolId: string;
+    userPoolWebClientId: string;
+  };
+  S3Config?: {
+    bucket: string;
+    region: string;
+  };
+} & Partial<CogreactConfig>;
+
+type CogreactConfig = {
+  loadingComponent: React.ReactElement<any, any> | null;
+  loginPath: string;
+  completeNewPasswordPath: string;
+  verifyEmailPath: string;
+  redirectToPreviousPath: boolean;
+  defaultLoginSucceededPath: string;
+};
 ```

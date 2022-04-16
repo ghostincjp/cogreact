@@ -1,7 +1,7 @@
 import { Amplify } from 'aws-amplify';
 import React, { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
-import { authStateAtom } from '../recoil/atoms';
+import { authStateAtom, cogreactConfigAtom } from '../recoil/atoms';
 import { getInitialAuthStatus, getUserAttributes, getUserRoles } from '../utils/utils';
 
 type Props = {
@@ -16,10 +16,30 @@ type Props = {
     bucket: string;
     region: string;
   };
+} & Partial<CogreactConfig>;
+
+export type CogreactConfig = {
+  loadingComponent: React.ReactElement<any, any> | null;
+  loginPath: string;
+  completeNewPasswordPath: string;
+  verifyEmailPath: string;
+  redirectToPreviousPath: boolean;
+  defaultLoginSucceededPath: string;
 };
 
-export const Cogreact: React.FC<Props> = ({ children, AuthConfig, S3Config }) => {
+export const Cogreact: React.FC<Props> = ({
+  children,
+  AuthConfig,
+  S3Config,
+  loadingComponent,
+  loginPath,
+  completeNewPasswordPath,
+  verifyEmailPath,
+  redirectToPreviousPath,
+  defaultLoginSucceededPath,
+}) => {
   const [authState, setAuthState] = useRecoilState(authStateAtom);
+  const [cogreactConfig, setCogreactConfig] = useRecoilState(cogreactConfigAtom);
   const didMount = useRef(false);
 
   useEffect(() => {
@@ -31,6 +51,16 @@ export const Cogreact: React.FC<Props> = ({ children, AuthConfig, S3Config }) =>
         AWSS3: S3Config,
       },
     });
+
+    setCogreactConfig((state) => ({
+      ...state,
+      ...(loadingComponent != undefined && { loadingComponent }),
+      ...(loginPath && { loginPath }),
+      ...(completeNewPasswordPath && { completeNewPasswordPath }),
+      ...(verifyEmailPath && { verifyEmailPath }),
+      ...(redirectToPreviousPath && { redirectToPreviousPath }),
+      ...(defaultLoginSucceededPath && { defaultLoginSucceededPath }),
+    }));
 
     initAuthStatus();
 
@@ -61,7 +91,7 @@ export const Cogreact: React.FC<Props> = ({ children, AuthConfig, S3Config }) =>
     setAuthState({ ...authState, roles });
   };
 
-  if (authState.authStatus === 'LOADING') return <p>Loading...</p>;
+  if (authState.authStatus === 'LOADING') return cogreactConfig.loadingComponent;
 
   return <>{children}</>;
 };

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Cogreact } from '../components/Cogreact';
 
-console.log(`================================= ${process.env} =================================`);
 const region = process.env.REGION;
 const identityPoolId = process.env.IDENTITY_POOL_ID;
 const userPoolId = process.env.USER_POOL_ID;
