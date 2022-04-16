@@ -1,0 +1,24 @@
+# Publish the npm package once it has been merged into the prod branch.
+# When importing into a prod branch, the version of the package must be upgraded.
+# Publish will fail if you forget to upgrade package version.
+
+name: Publish package to npm registry
+on:
+  push:
+    branches:
+      - release # Set target branch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Setup .npmrc file to publish to npm
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+          registry-url: "https://registry.npmjs.org"
+      - run: npm ci
+      - run: npm run build
+      - run: npm publish --access=public ./
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
