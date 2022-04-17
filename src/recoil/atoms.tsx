@@ -16,10 +16,10 @@ export const cogreactOptionsAtom = atom<CogreactOptions>({
   key: RecoilKey.COGREACT_CONFIG,
   default: {
     loadingComponent: <p>Loading...</p>,
-    loginPath: '/login',
+    signInPath: '/signin',
     completeNewPasswordPath: '/complete-new-password',
     verifyEmailPath: '/verify-email',
     redirectToPreviousPath: true,
-    defaultLoginSucceededPath: '/',
+    defaultSignInSucceededPath: '/',
   },
 });

@@ -36,6 +36,15 @@ touch .env
 ```tsx
 import { useSignUp } from 'cogreact';
 
+const region = process.env.REGION;
+const identityPoolId = process.env.IDENTITY_POOL_ID;
+const userPoolId = process.env.USER_POOL_ID;
+const userPoolWebClientId = process.env.USER_POOL_WEB_CLIENT_ID;
+
+if (!region || !identityPoolId || !userPoolId || !userPoolWebClientId) {
+  throw new Error('Please set environment variables.');
+}
+
 export function App() {
   return (
     <BrowserRouter>
@@ -126,7 +135,7 @@ npm run stroybook
 ## Cogreact Settings
 
 ```ts
-type Props = {
+type CogreactConfig = {
   children: React.ReactNode;
   AuthConfig: {
     region: string;
@@ -138,14 +147,14 @@ type Props = {
     bucket: string;
     region: string;
   };
-} & Partial<CogreactConfig>;
+} & Partial<CogreactOptions>;
 
-type CogreactConfig = {
+export type CogreactOptions = {
   loadingComponent: React.ReactElement<any, any> | null;
-  loginPath: string;
+  signInPath: string;
   completeNewPasswordPath: string;
   verifyEmailPath: string;
   redirectToPreviousPath: boolean;
-  defaultLoginSucceededPath: string;
+  defaultSignInSucceededPath: string;
 };
 ```

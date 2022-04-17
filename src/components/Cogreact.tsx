@@ -20,11 +20,11 @@ type CogreactConfig = {
 
 export type CogreactOptions = {
   loadingComponent: React.ReactElement<any, any> | null;
-  loginPath: string;
+  signInPath: string;
   completeNewPasswordPath: string;
   verifyEmailPath: string;
   redirectToPreviousPath: boolean;
-  defaultLoginSucceededPath: string;
+  defaultSignInSucceededPath: string;
 };
 
 export const Cogreact: React.FC<CogreactConfig> = ({
@@ -32,11 +32,11 @@ export const Cogreact: React.FC<CogreactConfig> = ({
   AuthConfig,
   S3Config,
   loadingComponent,
-  loginPath,
+  signInPath,
   completeNewPasswordPath,
   verifyEmailPath,
   redirectToPreviousPath,
-  defaultLoginSucceededPath,
+  defaultSignInSucceededPath,
 }) => {
   const [authState, setAuthState] = useRecoilState(authStateAtom);
   const [cogreactConfig, setCogreactConfig] = useRecoilState(cogreactOptionsAtom);
@@ -55,11 +55,11 @@ export const Cogreact: React.FC<CogreactConfig> = ({
     setCogreactConfig((state) => ({
       ...state,
       ...(loadingComponent != undefined && { loadingComponent }),
-      ...(loginPath && { loginPath }),
+      ...(signInPath && { signInPath }),
       ...(completeNewPasswordPath && { completeNewPasswordPath }),
       ...(verifyEmailPath && { verifyEmailPath }),
       ...(redirectToPreviousPath && { redirectToPreviousPath }),
-      ...(defaultLoginSucceededPath && { defaultLoginSucceededPath }),
+      ...(defaultSignInSucceededPath && { defaultSignInSucceededPath }),
     }));
 
     initAuthStatus();
