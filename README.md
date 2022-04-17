@@ -68,6 +68,7 @@ const YourComponent = () => {
   const { signUp, loading, error } = useSignUp()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
 
   const handleClick = () => {
     signUp({ email, password, attributes: { name: name } });
@@ -82,6 +83,7 @@ const YourComponent = () => {
         value={password}
         onChange={(e) => setPassword(e.currentTarget.value)}
       />
+      <input type="text" placeholder="text" value={name} onChange={(e) => setName(e.currentTarget.value)} />
       <button onClick={handleClick}>Sign Up</button>
     </div>
   );
@@ -121,7 +123,6 @@ export function App() {
     </RecoilRoot>
   );
 }
-
 ```
 
 ## Try
