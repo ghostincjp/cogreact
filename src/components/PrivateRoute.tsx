@@ -1,3 +1,4 @@
+import React from 'react';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuthStatus } from '../hooks/useAuthStatus';
 import { useCogreactConfig } from '../hooks/useCogreactConfig';
