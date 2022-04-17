@@ -1,3 +1,4 @@
+import React from 'react';
 import { atom } from 'recoil';
 import { CogreactOptions } from '../components/Cogreact';
 import { AuthState } from '../types';

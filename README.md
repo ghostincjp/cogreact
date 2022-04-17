@@ -3,9 +3,9 @@
 ## Installation
 
 ```sh
-npm i cogreact
+npm i cogreact recoil react-router-dom
 # OR
-yarn add cogreact
+yarn add cogreact recoil react-router-dom
 ```
 
 ## Dependencies
@@ -38,11 +38,20 @@ import { useSignUp } from 'cogreact';
 
 export function App() {
   return (
-    <RecoilRoot>
-      <CogreactWrapper>
-        <YourComponent>
-      </CogreactWrapper>
-    </RecoilRoot>
+    <BrowserRouter>
+      <RecoilRoot>
+        <Cogreact
+          AuthConfig={{
+            region,
+            identityPoolId,
+            userPoolId,
+            userPoolWebClientId,
+          }}
+        >
+          <YourComponent>
+        </Cogreact>
+      </RecoilRoot>
+    </BrowserRouter>
   );
 }
 

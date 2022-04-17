@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter, Link, Route, Routes, useLocation } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { SignInRoute } from '../components/LoginRoute';
 import { PrivateRoute } from '../components/PrivateRoute';
+import { SignInRoute } from '../components/SignInRoute';
 import { authStateAtom } from '../recoil/atoms';
 import { CogreactWrapper } from './CogreactWrapper';
 import { CompleteNewPassword } from './CompleteNewPassword.stories';
