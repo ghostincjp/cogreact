@@ -1,4 +1,4 @@
-import { Auth } from 'aws-amplify';
+import { Auth } from '@aws-amplify/auth';
 import { ResponseResult } from '../types';
 import useHttpStatus from './useHttpStatus';
 

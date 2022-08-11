@@ -1,4 +1,4 @@
-import { Auth } from 'aws-amplify';
+import { Auth } from '@aws-amplify/auth';
 import { useSetRecoilState } from 'recoil';
 import { authStateAtom } from '../recoil/atoms';
 import { hasValidEmail } from '../utils/utils';

@@ -1,4 +1,4 @@
-import { Auth } from 'aws-amplify';
+import { Auth } from '@aws-amplify/auth';
 import { ROLES, RoleType } from '../types';
 
 export const hasValidEmail = async () => {
