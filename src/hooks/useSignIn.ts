@@ -17,7 +17,11 @@ export const useSignIn = () => {
       });
 
       if (cognitoUser?.signInUserSession == null) {
-        setAuthState((state) => ({ ...state, authStatus: 'REQUIRE_COMPLETE_NEW_PASSWORD' }));
+        setAuthState((state) => ({
+          ...state,
+          cognitoUserForCompletePassword: cognitoUser,
+          authStatus: 'REQUIRE_COMPLETE_NEW_PASSWORD',
+        }));
         return;
       }
 
