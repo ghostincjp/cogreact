@@ -1,11 +1,12 @@
 import { Auth } from '@aws-amplify/auth';
 import { useSetRecoilState } from 'recoil';
-import { authStateAtom } from '../recoil/atoms';
+import { authStateAtom, cognitoUserForCompletePasswordAtom } from '../recoil/atoms';
 import { hasValidEmail } from '../utils/utils';
 import useHttpStatus from './useHttpStatus';
 
 export const useSignIn = () => {
   const setAuthState = useSetRecoilState(authStateAtom);
+  const setCognitoUserForCompletePasswordAtom = useSetRecoilState(cognitoUserForCompletePasswordAtom);
   const { loading, setLoading, error, setError } = useHttpStatus();
 
   const signIn = async ({ email, password }: { email: string; password: string }) => {
@@ -16,12 +17,12 @@ export const useSignIn = () => {
         password,
       });
 
-      if (cognitoUser?.signInUserSession == null) {
+      if (cognitoUser?.challengeName === 'NEW_PASSWORD_REQUIRED') {
         setAuthState((state) => ({
           ...state,
-          cognitoUserForCompletePassword: cognitoUser,
           authStatus: 'REQUIRE_COMPLETE_NEW_PASSWORD',
         }));
+        setCognitoUserForCompletePasswordAtom(cognitoUser);
         return;
       }
 

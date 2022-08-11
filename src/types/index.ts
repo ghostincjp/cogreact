@@ -16,5 +16,4 @@ export type RoleType = typeof ROLES[number];
 export type AuthState = {
   authStatus: AuthStatus;
   roles: RoleType[];
-  cognitoUserForCompletePassword?: any;
 } & Attributes;

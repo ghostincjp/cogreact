@@ -1,6 +1,6 @@
 import { Auth } from '@aws-amplify/auth';
-import { useRecoilState } from 'recoil';
-import { authStateAtom } from '../recoil/atoms';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { authStateAtom, cognitoUserForCompletePasswordAtom } from '../recoil/atoms';
 import { ResponseResult } from '../types';
 import { hasValidEmail } from '../utils/utils';
 import useHttpStatus from './useHttpStatus';
@@ -16,17 +16,18 @@ export type CognitoRequiredAttributes = {
 
 export const useCompleteNewPassword = (args?: UseCompleteNewPasswordArgs) => {
   const [authState, setAuthState] = useRecoilState(authStateAtom);
+  const cognitoUser = useRecoilValue(cognitoUserForCompletePasswordAtom);
   const { loading, setLoading, error, setError } = useHttpStatus();
 
   const completeNewPassword = async (newPassword: string, requiredAttributes?: CognitoRequiredAttributes) => {
     try {
-      if (!authState.cognitoUserForCompletePassword) {
+      if (!cognitoUser) {
         setError('新規パスワードの登録前に仮パスワードでログインを行ってください');
         return;
       }
 
       setLoading(true);
-      await Auth.completeNewPassword(authState.cognitoUserForCompletePassword, newPassword, requiredAttributes);
+      await Auth.completeNewPassword(cognitoUser, newPassword, requiredAttributes);
 
       args?.onCompleted && args?.onCompleted('success');
 
