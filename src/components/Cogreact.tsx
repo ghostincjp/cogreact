@@ -1,4 +1,4 @@
-import { Amplify } from 'aws-amplify';
+import { Auth } from '@aws-amplify/auth';
 import React, { useEffect, useRef } from 'react';
 import { useRecoilState } from 'recoil';
 import { authStateAtom, cogreactOptionsAtom } from '../recoil/atoms';
@@ -45,7 +45,7 @@ export const Cogreact: React.FC<CogreactConfig> = ({
   useEffect(() => {
     if (didMount.current) return;
 
-    Amplify.configure({
+    Auth.configure({
       Auth: AuthConfig,
       Storage: {
         AWSS3: S3Config,
