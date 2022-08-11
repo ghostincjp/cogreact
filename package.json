@@ -1,6 +1,6 @@
 {
   "name": "cogreact",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Use amazon aws cognito with React and Recoil",
   "main": "dist/cogreact.js",
   "module": "dist/cogreact.mjs",
