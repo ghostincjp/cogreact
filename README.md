@@ -12,7 +12,7 @@ yarn add cogreact recoil react-router-dom
 
 * Recoil@^0.7
 * React Router@^6
-* aws-amplify@^4
+* @aws-amplify/auth@^4
 
 ## Prerequisite
 
@@ -130,7 +130,7 @@ export function App() {
 Try it out on storybook.
 
 ```bash
-npm run stroybook
+npm run storybook
 ```
 
 ## Cogreact Settings
