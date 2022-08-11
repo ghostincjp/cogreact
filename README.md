@@ -114,7 +114,7 @@ export function App() {
             </Route>
 
             {/* Complete new password routes is here. */}
-            <Route element={<CompleteNewPassword />}>
+            <Route element={<CompleteNewPasswordRoute />}>
               <Route path="complete-new-password" element={<>Complete New Password</>} />
             </Route>
           </Routes>
