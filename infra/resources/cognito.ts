@@ -7,7 +7,7 @@ const stack = pulumi.getStack();
 /**
  * Cognito
  */
-export const createCognitoResource = () => {
+export const createCognitoResource = (bucket: aws.s3.Bucket) => {
   const userPool = new aws.cognito.UserPool(`${project}-${stack}-user-pool`, {
     usernameAttributes: ['email'],
     passwordPolicy: {
@@ -76,6 +76,24 @@ export const createCognitoResource = () => {
     precedence: 1,
     roleArn: adminRole.arn,
   });
+  const adminPolicy: aws.iam.PolicyDocument = {
+    Version: '2012-10-17',
+    Statement: [
+      {
+        Effect: 'Allow',
+        Action: ['s3:PutObject'],
+        Resource: [
+          pulumi.interpolate`arn:aws:s3:::${bucket.bucket}`,
+          pulumi.interpolate`arn:aws:s3:::${bucket.bucket}/*`,
+        ],
+      },
+    ],
+  };
+  new aws.iam.RolePolicy(`${project}-${stack}-admin-role-policy`, {
+    role: adminRole,
+    policy: adminPolicy,
+  });
+
   new aws.cognito.UserGroup(`${project}-${stack}-operator-group`, {
     userPoolId: userPool.id,
     name: 'General',

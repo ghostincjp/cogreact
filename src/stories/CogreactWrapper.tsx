@@ -5,6 +5,7 @@ const region = process.env.REGION;
 const identityPoolId = process.env.IDENTITY_POOL_ID;
 const userPoolId = process.env.USER_POOL_ID;
 const userPoolWebClientId = process.env.USER_POOL_WEB_CLIENT_ID;
+const bucket = process.env.BUCKET;
 
 if (!region || !identityPoolId || !userPoolId || !userPoolWebClientId) {
   throw new Error('Please set environment variables.');
@@ -23,6 +24,7 @@ export const CogreactWrapper: React.FC<Props> = ({ children }) => {
         userPoolId,
         userPoolWebClientId,
       }}
+      S3Config={bucket ? { region, bucket } : undefined}
     >
       {children}
     </Cogreact>

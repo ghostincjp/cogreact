@@ -1,3 +1,4 @@
+export { Storage } from '@aws-amplify/storage';
 export * from './components/Cogreact';
 export * from './components/CompleteNewPasswordRoute';
 export * from './components/PrivateRoute';
