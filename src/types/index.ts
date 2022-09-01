@@ -10,10 +10,7 @@ export type AuthStatus =
 
 export type ResponseResult = 'success' | 'error';
 
-export const ROLES = ['Admin', 'Operator', 'Reader'] as const;
-export type RoleType = typeof ROLES[number];
-
 export type AuthState = {
   authStatus: AuthStatus;
-  roles: RoleType[];
+  roles: string[];
 } & Attributes;

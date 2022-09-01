@@ -1,5 +1,4 @@
 import { Auth } from '@aws-amplify/auth';
-import { ROLES, RoleType } from '../types';
 
 export const hasValidEmail = async () => {
   try {
@@ -47,16 +46,9 @@ export const getInitialAuthStatus = async () => {
   return 'SIGNED_IN';
 };
 
-export const getUserRoles = async (): Promise<RoleType[]> => {
+export const getUserRoles = async (): Promise<string[]> => {
   const currentSession = await Auth.currentSession();
   const roles: string[] = currentSession.getIdToken().payload['cognito:groups'] ?? [];
 
-  return roles.filter(isRole);
-};
-
-export const isRole = (str: any): str is RoleType => {
-  if (ROLES.includes(str)) {
-    return true;
-  }
-  return false;
+  return roles;
 };
