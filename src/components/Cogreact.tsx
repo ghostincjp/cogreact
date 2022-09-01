@@ -83,12 +83,12 @@ export const Cogreact: React.FC<CogreactConfig> = ({
 
     if (!attributes) return;
 
-    setAuthState({ ...authState, ...attributes });
+    setAuthState((prev) => ({ ...prev, ...attributes }));
   };
 
   const fetchUserRoles = async () => {
     const roles = await getUserRoles();
-    setAuthState({ ...authState, roles });
+    setAuthState((prev) => ({ ...prev, roles }));
   };
 
   if (authState.authStatus === 'LOADING') return cogreactConfig.loadingComponent;
