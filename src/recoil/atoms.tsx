@@ -23,7 +23,7 @@ export const cognitoUserForCompletePasswordAtom = atom<any>({
 export const cogreactOptionsAtom = atom<CogreactOptions>({
   key: RecoilKey.COGREACT_CONFIG,
   default: {
-    loadingComponent: <p>Loading...</p>,
+    loadingComponent: null,
     signInPath: '/signin',
     completeNewPasswordPath: '/complete-new-password',
     verifyEmailPath: '/verify-email',
